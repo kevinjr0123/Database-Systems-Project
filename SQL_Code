@@ -171,7 +171,7 @@ WHERE category = 'Final Test' AND course_id = 1;
 -- Add 2 points to the score of each student on an assignment -- 9
 
 UPDATE Grades
-SET score = score + 5
+SET score = score + 2
 WHERE assignment_id = 3;
 
 -- Add 2 points just to those students whose last name contains a ‘Q’ -- 10
