@@ -1,4 +1,4 @@
--- ER Diagram --
+-- ER Diagram -- 1
 
 Course
 ----------
@@ -30,7 +30,7 @@ assignment_id (Foreign Key)
 student_id (Foreign Key)
 score
 
--- Creating Tables --
+-- Creating Tables -- 2
 
 -- Create Course table
 CREATE TABLE Course (
@@ -70,7 +70,7 @@ CREATE TABLE Grades (
   FOREIGN KEY (student_id) REFERENCES Student(student_id)
 );
 
--- Inserting Values --
+-- Inserting Values -- 2
 
 -- Insert values into Course table --
 INSERT INTO Course (course_id, department, course_number, course_name, semester, year)
@@ -112,31 +112,15 @@ VALUES (1.1, 1, 1, 5.0),
        
        
   
--- Show Output of Tables --
+-- Show Output of Tables -- 3
 
 SELECT * FROM Course;
 SELECT * FROM Student;
 SELECT * FROM Assignment;
 SELECT * FROM Grades;
-       
-
--- Showing all students in a course (course_id = 1, 2, 3, etc.) --
-
-SELECT s.* FROM Student s
-JOIN Course c ON s.course_id = c.course_id
-WHERE c.course_id = 1;
-
--- List all of the students in a course and all of their scores on every assignment --
-
-SELECT s.* FROM Student s
-JOIN Course c ON s.course_id = c.course_id
-WHERE c.course_id = 1;
-
-SELECT score FROM Grades
-WHERE student_id = 1 OR student_id = 2;
 
 
--- Showing the average/highest/lowest scores of an assignment --
+-- Showing the average/highest/lowest scores of an assignment -- 4
 
 -- Average score
 SELECT AVG(score) AS average_score
@@ -154,26 +138,43 @@ FROM Grades
 WHERE assignment_id = 2;
 
 
--- Add a new assignment --
+
+-- Showing all students in a course (course_id = 1, 2, 3, etc.) -- 5
+
+SELECT s.* FROM Student s
+JOIN Course c ON s.course_id = c.course_id
+WHERE c.course_id = 1;
+
+-- List all of the students in a course and all of their scores on every assignment -- 6
+
+SELECT s.* FROM Student s
+JOIN Course c ON s.course_id = c.course_id
+WHERE c.course_id = 1;
+
+SELECT score FROM Grades
+WHERE student_id = 1 OR student_id = 2;
+
+
+-- Add a new assignment -- 7
 
 INSERT INTO Assignment (assignment_id, category, percentage, course_id)
 VALUES (6, 'Final Test', 30.0, 1);
 
 
--- Change the percentage of categories for a test --
+-- Change the percentage of categories for a test -- 8
 
 UPDATE Assignment
 SET percentage = 0.0
 WHERE category = 'Final Test' AND course_id = 1;
 
 
--- Add 2 points to the score of each student on an assignment --
+-- Add 2 points to the score of each student on an assignment -- 9
 
 UPDATE Grades
 SET score = score + 5
 WHERE assignment_id = 3;
 
--- Add 2 points just to those students whose last name contains a ‘Q’ --
+-- Add 2 points just to those students whose last name contains a ‘Q’ -- 10
 
 UPDATE Grades
 SET score = score + 2
@@ -184,7 +185,7 @@ WHERE student_id IN (
   );
 
 
--- Compute the grade for a student --
+-- Compute the grade for a student -- 11
 
 SELECT s.first_name, s.last_name, SUM(a.percentage * g.score / 100) AS grade
 FROM Student s
@@ -193,7 +194,7 @@ JOIN Assignment a ON g.assignment_id = a.assignment_id
 GROUP BY s.first_name, s.last_name
 HAVING s.student_id = 1;
 
--- Compute the grade for a student, where the lowest score for a given category is dropped --
+-- Compute the grade for a student, where the lowest score for a given category is dropped -- 12
 
 SELECT s.first_name, s.last_name, SUM(a.percentage * (g.score - min_score.min_score) / 100) AS grade
 FROM Student s
