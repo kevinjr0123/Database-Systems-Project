@@ -114,6 +114,14 @@ WHERE c.course_id = 1;
 
 Task 6 (List all of the students in a course and all of their scores on every assignment)
 
+SELECT s.* FROM Student s
+JOIN Course c ON s.course_id = c.course_id
+WHERE c.course_id = 1;
+
+SELECT score FROM Grades
+WHERE student_id = 1 OR student_id = 2;
+
+
 
 Task 7 (Add an assignment to a course)
 
