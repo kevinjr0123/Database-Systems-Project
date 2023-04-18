@@ -1,6 +1,6 @@
 # Database-Systems-Project
 
-Commands to Complete Tasks
+Commands to Complete Tasks (Easier to Read in SQL_Code file)
 
 Task 2 (Create tables and insert values into tables)
 
