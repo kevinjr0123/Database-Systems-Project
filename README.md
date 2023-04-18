@@ -113,6 +113,8 @@ WHERE c.course_id = 1;
 
 
 Task 6 (List all of the students in a course and all of their scores on every assignment)
+
+
 Task 7 (Add an assignment to a course)
 
 INSERT INTO Assignment (assignment_id, category, percentage, course_id)
@@ -137,6 +139,8 @@ WHERE assignment_id = 3;
 
 
 Task 10 (Add 2 points just to those students whose last name contains a ‘Q’)
+
+
 Task 11 (Compute the grade for a student)
 
 SELECT s.first_name, s.last_name, SUM(a.percentage * g.score / 100) AS grade
@@ -149,4 +153,11 @@ HAVING s.student_id = 1;
 
 Task 12 (Compute the grade for a student, where the lowest score for a given category is dropped)
 
+SELECT s.first_name, s.last_name, SUM(a.percentage * (g.score - min_score.min_score) / 100) AS grade
+FROM Student s
+JOIN Grades g ON s.student_id = g.student_id
+JOIN Assignment a ON g.assignment_id = a.assignment_id
+JOIN (SELECT student_id, MIN(score) AS min_score FROM Grades GROUP BY student_id) AS min_score ON s.student_id = min_score.student_id
+WHERE s.student_id = 2
+GROUP BY s.first_name, s.last_name;
 
