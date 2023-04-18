@@ -148,6 +148,14 @@ WHERE assignment_id = 3;
 
 Task 10 (Add 2 points just to those students whose last name contains a ‘Q’)
 
+UPDATE Grades
+SET score = score + 2
+WHERE student_id IN (
+SELECT student_id
+FROM Student
+WHERE last_name LIKE '%Q%'
+);
+
 
 Task 11 (Compute the grade for a student)
 
