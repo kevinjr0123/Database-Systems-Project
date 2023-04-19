@@ -28,4 +28,11 @@ each homework is worth 20%/5=4% of the grade.
 12. Compute the grade for a student, where the lowest score for a given category is dropped.
 
 
+## 3. How to Run
+
+
+Copy/Paste each section individually starting from task 1 to test each task. For computing grades of different students, change the student id in the code that matches the student. For computing scores of assignments, change the assignment id. To change the percentage of a category of a course, change the percentage and course id.
+
+
+
 
